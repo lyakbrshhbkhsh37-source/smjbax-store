@@ -1,71 +1,174 @@
-
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>S_MJBAX | فروشگاه من</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Tahoma, Arial, sans-serif;
-      background: #101010;
-      color: white;
-      text-align: center;
-    }
-    header {
-      padding: 25px 10px;
-      background: #080808;
-      border-bottom: 1px solid #333;
-    }
-    header h1 { color: #d4af37; }
-    .hero { padding: 45px 15px; }
-    .hero h2 { font-size: 28px; }
-    .hero p { color: #bbb; }
-    .products {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      padding: 20px;
-    }
-    .product {
-      background: #202020;
-      border: 1px solid #444;
-      border-radius: 12px;
-      padding: 20px;
-      width: 140px;
-    }
-    .product h3 { color: #d4af37; }
-    footer { padding: 25px; color: #aaa; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S_MJBAX | بازار لوکس</title>
+<style>
+:root{--bg:#080808;--panel:#151515;--panel2:#202020;--gold:#d8b45c;--gold2:#f3d98a;--text:#f7f4ed;--muted:#b7b2a5;--line:#393225}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.topbar{position:sticky;top:0;z-index:10;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:#0b0b0bf2;border-bottom:1px solid var(--line);backdrop-filter:blur(10px)}
+.brand{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:bold;color:var(--gold2)}
+.crown{font-size:28px}
+.search{flex:1;max-width:440px;display:flex;gap:8px}
+input,select,textarea{min-width:0;width:100%;padding:12px;border:1px solid #4a402b;border-radius:12px;background:#101010;color:var(--text);outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--gold)}
+.btn{border:0;border-radius:12px;padding:11px 14px;background:var(--gold);color:#17120a;font-weight:bold}
+.btn.secondary{background:#24211a;color:var(--gold2);border:1px solid #62502d}
+.wrap{max-width:1050px;margin:auto;padding:18px 14px 90px}
+.hero{padding:24px 20px;border:1px solid var(--line);border-radius:20px;background:radial-gradient(ellipse at top,#3a2c10 0,#17140e 38%,#111 75%);text-align:center}
+.hero h1{margin:8px 0;color:var(--gold2);font-size:clamp(25px,5vw,42px)}
+.hero p{margin:8px 0;color:var(--muted);line-height:1.9}
+.pills{display:flex;gap:8px;overflow:auto;padding:16px 0}
+.pill{white-space:nowrap;border:1px solid #51452d;border-radius:999px;padding:9px 14px;color:var(--gold2);background:#14120e}
+.pill.active{background:var(--gold);color:#16120a}
+.section-title{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 12px}
+.section-title h2{font-size:19px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card{overflow:hidden;border:1px solid var(--line);border-radius:16px;background:var(--panel)}
+.photo{height:180px;display:grid;place-items:center;background:linear-gradient(145deg,#29241a,#101010);font-size:62px}
+.cardbody{padding:12px}
+.card h3{font-size:15px;margin:0 0 8px}
+.desc{font-size:12px;color:var(--muted);line-height:1.7;min-height:36px}
+.price{color:var(--gold2);font-weight:bold;margin:10px 0}
+.row{display:flex;gap:8px;align-items:center}
+.row>*{flex:1}
+.small{font-size:12px;color:var(--muted)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin-top:18px}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.formgrid .full{grid-column:1/-1}
+.hidden{display:none!important}
+.cartline{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #302b20}
+.notice{padding:12px;border-radius:12px;background:#201b10;color:var(--gold2);line-height:1.8;font-size:13px}
+.bottomnav{position:fixed;bottom:0;left:0;right:0;z-index:12;display:flex;justify-content:space-around;background:#0b0b0bf2;border-top:1px solid var(--line);padding:9px 4px calc(9px + env(safe-area-inset-bottom));backdrop-filter:blur(10px)}
+.bottomnav button{border:0;background:transparent;color:var(--muted);font-size:12px;padding:4px}
+.bottomnav button span{display:block;font-size:20px;margin-bottom:3px}
+.bottomnav button.active{color:var(--gold2)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:24px}
+@media(max-width:650px){.topbar{flex-wrap:wrap}.brand{font-size:18px}.search{order:3;flex-basis:100%;max-width:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.photo{height:140px;font-size:48px}.wrap{padding-inline:10px}.formgrid{grid-template-columns:1fr}.formgrid .full{grid-column:auto}}
+@media(max-width:360px){.grid{grid-template-columns:1fr}.photo{height:190px}}
+</style>
 </head>
 <body>
-  <header>
-    <h1>S_MJBAX</h1>
-    <p>فروشگاه اختصاصی تو</p>
-  </header>
-
-  <section class="hero">
-    <h2>به فروشگاه ما خوش آمدی</h2>
-    <p>انتخاب‌های خاص، برای سلیقه‌های خاص</p>
+<header class="topbar">
+  <a class="brand" href="#" onclick="showPage('home');return false"><span class="crown">♛</span><span>S_MJBAX</span></a>
+  <form class="search" onsubmit="searchProducts(event)">
+    <input id="searchInput" aria-label="جستجوی محصولات" placeholder="جستجوی محصولات...">
+    <button class="btn" type="submit">جستجو</button>
+  </form>
+  <button class="btn secondary" onclick="showPage('account')">حساب من</button>
+</header>
+<main class="wrap">
+  <section id="homePage">
+    <div class="hero">
+      <div class="crown">👑</div>
+      <h1>S_MJBAX</h1>
+      <p>بازار آنلاین مشکی و طلایی<br>محصولات را ببین، انتخاب کن و به سبد خریدت اضافه کن.</p>
+      <div class="small">SHOP • SELL • GROW</div>
+    </div>
+    <div class="pills" id="categories">
+      <button class="pill active" onclick="filterCategory('همه',this)">همه محصولات</button>
+      <button class="pill" onclick="filterCategory('مد و پوشاک',this)">مد و پوشاک</button>
+      <button class="pill" onclick="filterCategory('زیبایی',this)">زیبایی</button>
+      <button class="pill" onclick="filterCategory('دیجیتال',this)">دیجیتال</button>
+      <button class="pill" onclick="filterCategory('خانه',this)">خانه</button>
+    </div>
+    <div class="section-title"><h2>محصولات پیشنهادی</h2><span class="small" id="productCount"></span></div>
+    <div class="grid" id="productGrid"></div>
+    <section class="panel">
+      <h2>فروشنده هستی؟</h2>
+      <p class="small">برای درخواست فروشندگی، اطلاعاتت را ثبت کن. تأیید نهایی باید توسط مدیر انجام شود.</p>
+      <button class="btn" onclick="showPage('seller')">درخواست فروشندگی</button>
+    </section>
   </section>
 
-  <section class="products">
-    <div class="product">
-      <h3>محصول شماره ۱</h3>
-      <p>به‌زودی معرفی می‌شود</p>
-    </div>
-    <div class="product">
-      <h3>محصول شماره ۲</h3>
-      <p>به‌زودی معرفی می‌شود</p>
-    </div>
-    <div class="product">
-      <h3>محصول شماره ۳</h3>
-      <p>به‌زودی معرفی می‌شود</p>
+  <section id="cartPage" class="hidden">
+    <div class="section-title"><h2>🛒 سبد خرید</h2><button class="btn secondary" onclick="showPage('home')">ادامه خرید</button></div>
+    <div class="panel" id="cartContents"></div>
+    <div class="notice">این نسخه نمایشی است؛ هنوز پرداخت بانکی واقعی وصل نشده است.</div>
+  </section>
+
+  <section id="favoritesPage" class="hidden">
+    <h2>♡ علاقه‌مندی‌ها</h2><div class="grid" id="favoriteGrid"></div>
+  </section>
+
+  <section id="accountPage" class="hidden">
+    <h2>حساب کاربری</h2>
+    <div class="panel">
+      <p>برای نسخه آزمایشی، اطلاعات حساب در سرور ذخیره نمی‌شود.</p>
+      <div class="formgrid">
+        <input id="accountName" placeholder="نام شما">
+        <input id="accountPhone" inputmode="tel" placeholder="شماره موبایل">
+        <button class="btn full" onclick="demoAccount()">ادامه (نمایشی)</button>
+      </div>
+      <p id="accountMessage" class="small"></p>
     </div>
   </section>
 
-  <footer>© S_MJBAX</footer>
+  <section id="sellerPage" class="hidden">
+    <h2>درخواست فروشندگی</h2>
+    <div class="panel">
+      <div class="notice">این فرم فقط نمایشی است و اطلاعات را برای مدیر ارسال نمی‌کند؛ برای فعال‌سازی واقعی به سرور و پایگاه داده نیاز است.</div>
+      <form class="formgrid" onsubmit="submitSeller(event)">
+        <input id="sellerName" required placeholder="نام و نام خانوادگی">
+        <input id="sellerPhone" required inputmode="tel" placeholder="شماره موبایل">
+        <input id="shopName" required placeholder="نام فروشگاه" class="full">
+        <textarea id="sellerAbout" placeholder="توضیح کوتاه درباره محصولات" class="full"></textarea>
+        <button class="btn full" type="submit">ثبت درخواست آزمایشی</button>
+      </form>
+      <p id="sellerMessage" class="small"></p>
+    </div>
+  </section>
+
+  <section id="adminPage" class="hidden">
+    <h2>پنل مدیریت</h2>
+    <div class="notice">این صفحه فقط نمونه ظاهری است؛ امنیت مدیر و اطلاعات واقعی تا زمان ساخت بک‌اند فعال نیست.</div>
+    <div class="panel"><h3>قوانین فروش</h3><p class="small">اولین کالای فروخته‌شده هر فروشنده رایگان؛ از کالای دوم به بعد هر کالا ۱۰۰٬۰۰۰ تومان.</p><p class="small">هزینه‌ها باید پس از فروش موفق و در سرور محاسبه شوند.</p></div>
+  </section>
+</main>
+<footer>© S_MJBAX — SHOP • SELL • GROW</footer>
+<nav class="bottomnav" aria-label="ناوبری اصلی">
+  <button class="active" data-page="home" onclick="showPage('home')"><span>⌂</span>خانه</button>
+  <button data-page="search" onclick="focusSearch()"><span>⌕</span>جستجو</button>
+  <button data-page="seller" onclick="showPage('seller')"><span>＋</span>فروشندگی</button>
+  <button data-page="cart" onclick="showPage('cart')"><span>🛒</span>سبد خرید <b id="cartBadge"></b></button>
+  <button data-page="favorites" onclick="showPage('favorites')"><span>♡</span>علاقه‌مندی</button>
+</nav>
+<script>
+const products = [
+ {id:1,name:"ساعت لوکس",category:"مد و پوشاک",price:1850000,desc:"طراحی شیک با ظاهر کلاسیک",emoji:"⌚",seller:"فروشگاه نمونه"},
+ {id:2,name:"عطر خاص",category:"زیبایی",price:920000,desc:"رایحه‌ای جذاب برای استفاده روزانه",emoji:"🧴",seller:"فروشگاه نمونه"},
+ {id:3,name:"هدفون بی‌سیم",category:"دیجیتال",price:1450000,desc:"مناسب موسیقی و استفاده روزمره",emoji:"🎧",seller:"فروشگاه نمونه"},
+ {id:4,name:"کیف دستی",category:"مد و پوشاک",price:780000,desc:"سبک و مناسب استفاده روزانه",emoji:"👜",seller:"فروشگاه نمونه"},
+ {id:5,name:"چراغ دکوراتیو",category:"خانه",price:540000,desc:"نور گرم برای فضای دلنشین",emoji:"💡",seller:"فروشگاه نمونه"},
+ {id:6,name:"عینک آفتابی",category:"مد و پوشاک",price:660000,desc:"استایل مدرن و ساده",emoji:"🕶️",seller:"فروشگاه نمونه"}
+];
+let cart = JSON.parse(localStorage.getItem("smjbax_cart") || "[]");
+let favorites = JSON.parse(localStorage.getItem("smjbax_favs") || "[]");
+let activeCategory = "همه";
+const toman = n => new Intl.NumberFormat("fa-IR").format(n) + " تومان";
+function renderProducts(list=products,target="productGrid"){
+ const el=document.getElementById(target); if(!el)return;
+ el.innerHTML=list.map(p=>`<article class="card"><div class="photo">${p.emoji}</div><div class="cardbody"><h3>${p.name}</h3><div class="desc">${p.desc}</div><div class="small">فروشنده: ${p.seller}</div><div class="price">${toman(p.price)}</div><div class="row"><button class="btn" onclick="addCart(${p.id})">افزودن</button><button class="btn secondary" onclick="toggleFav(${p.id})">♡</button></div></div></article>`).join("");
+ if(target==="productGrid") document.getElementById("productCount").textContent=new Intl.NumberFormat("fa-IR").format(list.length)+" محصول";
+}
+function filterCategory(cat,btn){activeCategory=cat;document.querySelectorAll(".pill").forEach(b=>b.classList.remove("active"));btn.classList.add("active");renderProducts(products.filter(p=>cat==="همه"||p.category===cat));}
+function searchProducts(e){e.preventDefault();const q=document.getElementById("searchInput").value.trim();showPage("home");renderProducts(products.filter(p=>(p.name+" "+p.desc+" "+p.category).includes(q)));}
+function focusSearch(){showPage("home");document.getElementById("searchInput").focus();}
+function addCart(id){const found=cart.find(x=>x.id===id);if(found)found.qty++;else cart.push({id,qty:1});saveState();updateCart();alert("محصول به سبد خرید اضافه شد.");}
+function updateCart(){document.getElementById("cartBadge").textContent=cart.reduce((s,x)=>s+x.qty,0)||"";const el=document.getElementById("cartContents");if(!cart.length){el.innerHTML="<p>سبد خریدت خالی است.</p>";return;}el.innerHTML=cart.map(x=>{const p=products.find(y=>y.id===x.id);return `<div class="cartline"><div><b>${p.name}</b><div class="small">${toman(p.price)} × ${x.qty}</div></div><div class="row"><button class="btn secondary" onclick="changeQty(${p.id},-1)">−</button><button class="btn secondary" onclick="changeQty(${p.id},1)">＋</button><button class="btn secondary" onclick="removeCart(${p.id})">حذف</button></div></div>`}).join("")+`<h3>جمع کل: ${toman(cart.reduce((s,x)=>s+products.find(p=>p.id===x.id).price*x.qty,0))}</h3><button class="btn" onclick="alert('پرداخت واقعی هنوز راه‌اندازی نشده است.')">ادامه به پرداخت</button>`;}
+function changeQty(id,d){const x=cart.find(y=>y.id===id);if(!x)return;x.qty+=d;if(x.qty<1)cart=cart.filter(y=>y.id!==id);saveState();updateCart();}
+function removeCart(id){cart=cart.filter(x=>x.id!==id);saveState();updateCart();}
+function toggleFav(id){if(favorites.includes(id))favorites=favorites.filter(x=>x!==id);else favorites.push(id);saveState();renderProducts(products.filter(p=>favorites.includes(p.id)),"favoriteGrid");alert("علاقه‌مندی‌ها به‌روزرسانی شد.");}
+function saveState(){localStorage.setItem("smjbax_cart",JSON.stringify(cart));localStorage.setItem("smjbax_favs",JSON.stringify(favorites));}
+function showPage(page){["home","cart","favorites","account","seller","admin"].forEach(p=>document.getElementById(p+"Page").classList.toggle("hidden",p!==page));document.querySelectorAll(".bottomnav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="cart")updateCart();if(page==="favorites")renderProducts(products.filter(p=>favorites.includes(p.id)),"favoriteGrid");window.scrollTo({top:0,behavior:"smooth"});}
+function demoAccount(){const n=document.getElementById("accountName").value.trim();document.getElementById("accountMessage").textContent=n?("سلام "+n+"! این ورود نمایشی است و حساب واقعی ساخته نشده."):"لطفاً نام خود را وارد کن.";}
+function submitSeller(e){e.preventDefault();document.getElementById("sellerMessage").textContent="درخواست نمایشی ثبت شد؛ هنوز به سرور یا مدیر ارسال نشده است.";}
+renderProducts();updateCart();
+</script>
 </body>
 </html>
